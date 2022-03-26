@@ -1,63 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 direction;
-
-    public float speed, jumpForce, totalJump;
-    public Rigidbody2D rig;
-    public Collider2D coll2D;
     public LayerMask layerGround;
+    public GameObject mask, mask2, platforms;
+    public Text gemTex;
+
+    private int contGem;
+
+    Player p;
 
     void Start()
     {
-        totalJump = 0;
-        //speed = 5;
+        p = new Player(gameObject, 5, 21, layerGround);
     }
 
     void Update()
     {
-        if (isGround() && totalJump > 1)
-        {
-            totalJump = 0;
-        }
-        Jump();
+        p.Jump();
+        ActivePlatform();
     }
     void FixedUpdate()
     {
-        Move();
+        p.Move();
     }
-
-    private void Move()
+    private void ActivePlatform()
     {
-        direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        transform.position += direction * Time.deltaTime * speed;
-    }
-
-    private void Jump()
-    {
-        if (isGround())
+        if (contGem == 2)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                rig.velocity = Vector2.up * jumpForce;
-                totalJump++;
-            }
-        }
-        if (Input.GetButtonUp("Jump"))
-        {
-            rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y * 0.5f);
-            totalJump++;
+            platforms.SetActive(true);
         }
     }
-
-    private bool isGround()
+    private void OnTriggerEnter2D(Collider2D coll)
     {
-        RaycastHit2D ground = Physics2D.BoxCast(coll2D.bounds.center,
-            coll2D.bounds.size, 0, Vector2.down, 0.1f, layerGround);
-
-        return ground.collider != null;
+        if (coll.CompareTag("FrontDoor"))
+        {
+            mask.SetActive(false);
+        }
+        else if (coll.CompareTag("ExitDoor"))
+        {
+            mask.SetActive(true);
+        }
+        else if (coll.CompareTag("FrontDoor2"))
+        {
+            mask2.SetActive(false);
+        }
+        else if (coll.CompareTag("Gem"))
+        {
+            contGem++;
+            gemTex.text = contGem.ToString("00");
+            Destroy(coll.gameObject);
+        }
     }
 }
