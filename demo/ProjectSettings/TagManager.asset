@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Floor
-  - 
+  - Wall
   - 
   - 
   - 
@@ -45,9 +46,9 @@ TagManager:
   - name: Background
     uniqueID: 3644420159
     locked: 0
+  - name: Secret
+    uniqueID: 1714838029
+    locked: 0
   - name: Foreground
     uniqueID: 1506406019
-    locked: 0
-  - name: Charactere
-    uniqueID: 1714838029
     locked: 0
