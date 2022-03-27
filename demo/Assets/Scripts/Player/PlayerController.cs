@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private void GameOver()
     {
         gameOverPanel.SetActive(true);
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         Destroy(gameObject);
     }
     private void OnColliderController(GameObject obj)
