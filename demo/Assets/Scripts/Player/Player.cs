@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rig;
     private Collider2D _coll2D;
     private Animator _animator;
-    private LayerMask _layerGround;
+    private LayerMask _layerGround, _layerWall;
 
     public Player(GameObject gameObj)
     {
@@ -17,12 +17,14 @@ public class Player : MonoBehaviour
         Initialize();
     }
 
-    public Player(GameObject gameObj, float speed, float jumpForce, LayerMask layerGround)
+    public Player(GameObject gameObj, float speed, float jumpForce, LayerMask layerGround, LayerMask layerWall)
     {
         _gameObj = gameObj;
         _speed = speed;
         _jumpForce = jumpForce;
         _layerGround = layerGround;
+        _layerWall = layerWall;
+
         Initialize();
     }
 
@@ -51,6 +53,15 @@ public class Player : MonoBehaviour
         {
             _gameObj.transform.localScale = new Vector3(-1,
                 _gameObj.transform.localScale.y, _gameObj.transform.localScale.z);
+        }
+
+        if (isWall())
+        {
+            _speed = 1;
+        }
+        else
+        {
+            _speed = 5;
         }
     }
     public void Jump()
@@ -104,6 +115,13 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
             _coll2D.bounds.size, 0, Vector2.down, 0.1f, _layerGround);
+
+        return ground.collider != null;
+    }
+    private bool isWall()
+    {
+        RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
+            _coll2D.bounds.size, 0, Vector2.right, 0.01f, _layerWall);
 
         return ground.collider != null;
     }

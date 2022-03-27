@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public LayerMask layerGround;
+    public LayerMask layerGround, layerWall;
     public GameObject mask, mask2, platforms;
     public Text gemTex;
+    public GameObject gameOverPanel;
 
     private int contGem;
 
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        p = new Player(gameObject, 5, 21, layerGround);
+        p = new Player(gameObject, 5, 21, layerGround, layerWall);
     }
 
     void Update()
@@ -32,25 +33,46 @@ public class PlayerController : MonoBehaviour
             platforms.SetActive(true);
         }
     }
-    private void OnTriggerEnter2D(Collider2D coll)
+    private void GameOver()
     {
-        if (coll.CompareTag("FrontDoor"))
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 1;
+        Destroy(gameObject);
+    }
+    private void OnColliderController(GameObject obj)
+    {
+        // onTrigger
+        if (obj.CompareTag("FrontDoor"))
         {
             mask.SetActive(false);
         }
-        else if (coll.CompareTag("ExitDoor"))
+        else if (obj.CompareTag("ExitDoor"))
         {
             mask.SetActive(true);
         }
-        else if (coll.CompareTag("FrontDoor2"))
+        else if (obj.CompareTag("FrontDoor2"))
         {
             mask2.SetActive(false);
         }
-        else if (coll.CompareTag("Gem"))
+        else if (obj.CompareTag("Gem"))
         {
             contGem++;
             gemTex.text = contGem.ToString("00");
-            Destroy(coll.gameObject);
+            Destroy(obj.gameObject);
         }
+
+        // onCollider
+        if (obj.CompareTag("Spikes"))
+        {
+            GameOver();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        OnColliderController(coll.gameObject);
+    }
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        OnColliderController(coll.gameObject);   
     }
 }

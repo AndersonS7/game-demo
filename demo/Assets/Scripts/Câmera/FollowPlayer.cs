@@ -10,15 +10,12 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
 
-    
-    void Start()
-    {
-        
-    }
-
     void FixedUpdate()
     {
-        CameraToPlayer();
+        if (target != null)
+        {
+            CameraToPlayer();
+        }
     }
 
     private void CameraToPlayer()
