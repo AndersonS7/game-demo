@@ -66,6 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             GameOver();
         }
+        else if (obj.CompareTag("Enemy"))
+        {
+            GameOver();
+        }
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
@@ -73,6 +77,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        OnColliderController(coll.gameObject);   
+        OnColliderController(coll.gameObject);
     }
 }

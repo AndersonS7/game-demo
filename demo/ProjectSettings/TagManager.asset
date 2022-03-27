@@ -12,6 +12,7 @@ TagManager:
   - ExitDoor
   - FrontDoor2
   - Gem
+  - Enemy
   layers:
   - Default
   - TransparentFX
