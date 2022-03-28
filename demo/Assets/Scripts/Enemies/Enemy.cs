@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private LayerMask _layerGround;
 
     private float _totalJump;
+    private Animator _animator;
     private Rigidbody2D _rig;
     private Collider2D _coll2D;
 
@@ -45,7 +46,17 @@ public class Enemy : MonoBehaviour
             _totalJump = 0;
         }
     }
-
+    public void AnimatorController()
+    {
+        if (isGround())
+        {
+            _animator.SetBool("TaPulando", false);
+        }
+        else
+        {
+            _animator.SetBool("TaPulando", true);
+        }
+    }
     public void Move(float direction)
     {
         if (direction > 0)
@@ -71,5 +82,6 @@ public class Enemy : MonoBehaviour
     {
         _rig = _obj.GetComponent<Rigidbody2D>();
         _coll2D = _obj.GetComponent<Collider2D>();
+        _animator = _obj.GetComponent<Animator>();
     }
 }

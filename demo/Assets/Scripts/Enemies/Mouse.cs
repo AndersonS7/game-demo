@@ -10,8 +10,9 @@ public class Mouse : MonoBehaviour
 
     void Start()
     {
-        mouse = new Enemy(gameObject, 2);
-        mouse.Move(-1);
+        direction = -1;
+        mouse = new Enemy(gameObject, 3.5f);
+        mouse.Move(direction);
     }
 
     void Update()

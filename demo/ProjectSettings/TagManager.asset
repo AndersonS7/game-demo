@@ -13,6 +13,7 @@ TagManager:
   - FrontDoor2
   - Gem
   - Enemy
+  - End
   layers:
   - Default
   - TransparentFX

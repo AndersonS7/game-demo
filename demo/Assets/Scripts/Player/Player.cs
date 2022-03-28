@@ -30,8 +30,17 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
-        _direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        _gameObj.transform.position += _direction * Time.deltaTime * _speed;
+        //_direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //_gameObj.transform.position += _direction * Time.deltaTime * _speed;
+
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            _gameObj.transform.Translate(Vector2.right * _speed * Time.deltaTime);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            _gameObj.transform.Translate(Vector2.left * _speed * Time.deltaTime);
+        }
 
         // animação correndo
         if (Input.GetAxis("Horizontal") != 0)

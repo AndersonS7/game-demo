@@ -4,9 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public LayerMask layerGround, layerWall;
-    public GameObject mask, mask2, platforms;
+    public GameObject mask, mask2, platforms, gameOverPanel, endPanel;
     public Text gemTex;
-    public GameObject gameOverPanel;
 
     private int contGem;
 
@@ -58,7 +57,11 @@ public class PlayerController : MonoBehaviour
         {
             contGem++;
             gemTex.text = contGem.ToString("00");
-            Destroy(obj.gameObject);
+        }
+        else if (obj.CompareTag("End"))
+        {
+            endPanel.SetActive(true);
+            Time.timeScale = 0;
         }
 
         // onCollider
