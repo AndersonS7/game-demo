@@ -30,16 +30,21 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
-        //_direction = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        //_gameObj.transform.position += _direction * Time.deltaTime * _speed;
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
+            // vira e anda para direita
             _gameObj.transform.Translate(Vector2.right * _speed * Time.deltaTime);
+            _gameObj.transform.localScale = new Vector3(1,
+                _gameObj.transform.localScale.y, _gameObj.transform.localScale.z);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             _gameObj.transform.Translate(Vector2.left * _speed * Time.deltaTime);
+
+            // vira e anda para esquerda
+            _gameObj.transform.localScale = new Vector3(-1,
+                _gameObj.transform.localScale.y, _gameObj.transform.localScale.z);
         }
 
         // animação correndo
@@ -50,18 +55,6 @@ public class Player : MonoBehaviour
         else
         {
             _animator.SetBool("TaCorrendo", false);
-        }
-
-        // vira para os lados
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            _gameObj.transform.localScale = new Vector3(1,
-                _gameObj.transform.localScale.y, _gameObj.transform.localScale.z);
-        }
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            _gameObj.transform.localScale = new Vector3(-1,
-                _gameObj.transform.localScale.y, _gameObj.transform.localScale.z);
         }
 
         if (isWall())

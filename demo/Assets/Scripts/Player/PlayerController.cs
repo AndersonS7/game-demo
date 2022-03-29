@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        p = new Player(gameObject, 5, 21, layerGround, layerWall);
+        p = new Player(gameObject, 5, 23, layerGround, layerWall);
     }
 
     void Update()
@@ -38,9 +38,8 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0;
         Destroy(gameObject);
     }
-    private void OnColliderController(GameObject obj)
+    private void OnTriggerController(GameObject obj)
     {
-        // onTrigger
         if (obj.CompareTag("FrontDoor"))
         {
             mask.SetActive(false);
@@ -63,8 +62,9 @@ public class PlayerController : MonoBehaviour
             endPanel.SetActive(true);
             Time.timeScale = 0;
         }
-
-        // onCollider
+    }
+    private void OnColliderController(GameObject obj)
+    {
         if (obj.CompareTag("Spikes"))
         {
             GameOver();
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        OnColliderController(coll.gameObject);
+        OnTriggerController(coll.gameObject);
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
