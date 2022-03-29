@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        p = new Player(gameObject, 5, 23, layerGround, layerWall);
+        p = new Player(gameObject, 5, 22.5f, layerGround, layerWall);
     }
 
     void Update()

@@ -4,17 +4,14 @@ public class EnemiesController : MonoBehaviour
 {
     private float direction, timeMove;
     private GameObject targetObj;
-    private bool isCollider;
 
-    public Collider2D col2D;
-    public LayerMask layer;
+    public LayerMask layerGround, layerWall;
 
     Enemy frog;
 
     void Start()
     {
-        isCollider = false;
-        frog = new Enemy(gameObject, 1, 12, layer);
+        frog = new Enemy(gameObject, 1, 12, layerGround, layerWall);
         targetObj = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -22,7 +19,8 @@ public class EnemiesController : MonoBehaviour
     {
         frog.AnimatorController();
 
-        if (targetObj != null && isCollider)
+        if (targetObj != null && 
+            Vector2.Distance(targetObj.transform.position, transform.position) < 4)
         {
             timeMove += Time.deltaTime;
 
@@ -37,22 +35,6 @@ public class EnemiesController : MonoBehaviour
                     timeMove = 0;
                 }
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (coll.CompareTag("Player"))
-        {
-            isCollider = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D coll)
-    {
-        if (coll.CompareTag("Player"))
-        {
-            isCollider = false;
         }
     }
 }

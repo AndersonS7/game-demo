@@ -287,8 +287,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497723203}
-  - {fileID: 1374130499}
   - {fileID: 292979119}
+  - {fileID: 1374130499}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21294,7 +21294,6 @@ GameObject:
   - component: {fileID: 292979123}
   - component: {fileID: 292979122}
   - component: {fileID: 292979121}
-  - component: {fileID: 292979120}
   m_Layer: 0
   m_Name: Frog (1)
   m_TagString: Enemy
@@ -21314,24 +21313,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 80909321}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &292979120
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292979118}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.38648874}
-  m_Size: {x: 7, y: 0.4323097}
-  m_Direction: 1
 --- !u!95 &292979121
 Animator:
   serializedVersion: 3
@@ -21364,7 +21347,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07766914, y: -0.23714024}
+  m_Offset: {x: -0.037879944, y: -0.23714024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -21375,7 +21358,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.967556, y: 0.8936566}
+  m_Size: {x: 1.6276016, y: 0.8936566}
   m_EdgeRadius: 0
 --- !u!50 &292979123
 Rigidbody2D:
@@ -21410,10 +21393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b73fea82721747aaed492678e2d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col2D: {fileID: 292979120}
-  layer:
+  layerGround:
     serializedVersion: 2
     m_Bits: 64
+  layerWall:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &292979125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30218,7 +30203,6 @@ GameObject:
   - component: {fileID: 497723200}
   - component: {fileID: 497723199}
   - component: {fileID: 497723204}
-  - component: {fileID: 497723205}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Enemy
@@ -30239,7 +30223,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07766914, y: -0.23714024}
+  m_Offset: {x: -0.030481339, y: -0.23714024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -30250,7 +30234,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.967556, y: 0.8936566}
+  m_Size: {x: 1.6393166, y: 0.8936566}
   m_EdgeRadius: 0
 --- !u!50 &497723200
 Rigidbody2D:
@@ -30285,10 +30269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b73fea82721747aaed492678e2d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col2D: {fileID: 497723205}
-  layer:
+  layerGround:
     serializedVersion: 2
     m_Bits: 64
+  layerWall:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &497723202
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30373,22 +30359,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &497723205
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497723198}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.38648874}
-  m_Size: {x: 7, y: 0.4323097}
-  m_Direction: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -42715,11 +42685,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374130497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.69, y: -17.17, z: 0}
+  m_LocalPosition: {x: 15.69, y: -17.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 80909321}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1374130500
 Rigidbody2D:
@@ -42755,7 +42725,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20097113, y: -0.3604722}
+  m_Offset: {x: -0.20097113, y: -0.37571526}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -42766,7 +42736,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1002626, y: 0.8375559}
+  m_Size: {x: 1.1002626, y: 0.868042}
   m_EdgeRadius: 0
 --- !u!114 &1374130502
 MonoBehaviour:
