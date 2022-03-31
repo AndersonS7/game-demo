@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
 
         return ground.collider != null;
     }
-    private bool isWall()
+    public bool isWall()
     {
         RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
             _coll2D.bounds.size, 0, Vector2.right, 0.01f, _layerWall);

@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - EffectParallax
     - EnemiesController
     - FollowPlayer
     - ItensController
@@ -104,9 +105,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3608}
     - Class: 114
-      Script: {instanceID: 5182}
+      Script: {instanceID: 4208}
     - Class: 114
-      Script: {instanceID: 48506}
+      Script: {instanceID: 4896}
+    - Class: 114
+      Script: {instanceID: 5186}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -216,7 +219,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 61c470a6e01837c569cfa2290dc7b4ac
+      Hash: 9d5c86d009daf995aca4d6275e7467d7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemiesController
@@ -270,7 +273,7 @@ ScriptsOnlyBuild:
     className: IKManager2D
   - hash:
       serializedVersion: 2
-      Hash: 57a47b4b746d41a60a9e7a22c9c74d2b
+      Hash: f0a8d58a785ef588df9295adef394f74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuController
@@ -499,6 +502,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItensController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
@@ -613,6 +622,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EffectParallax
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
     className: SpriteSkinEntity
@@ -694,13 +709,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ItensController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene.unity
-  playerPath: C:/zgames/buildPC/demo.exe
+  playerPath: C:/Users/ander/Desktop/Demo/demo.exe

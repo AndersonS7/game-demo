@@ -7,23 +7,42 @@ public class PlayerController : MonoBehaviour
     public GameObject mask, mask2, platforms, gameOverPanel, endPanel;
     public Text gemTex;
 
+    public static bool isWall;
+
     private int contGem;
 
     Player p;
 
     void Start()
     {
-        p = new Player(gameObject, 5, 22.5f, layerGround, layerWall);
+        p = new Player(gameObject, 5, 22.8f, layerGround, layerWall);
+        isWall = false;
     }
 
     void Update()
     {
-        p.Jump();
-        ActivePlatform();
+        if (PlayerPrefs.GetString("Start") == "start")
+        {
+            p.Jump();
+            ActivePlatform();
+
+            // mostra para o background quando o player bateu na parede
+            if (p.isWall())
+            {
+                isWall = true;
+            }
+            else
+            {
+                isWall = false;
+            }
+        }
     }
     void FixedUpdate()
     {
-        p.Move();
+        if (PlayerPrefs.GetString("Start") == "start")
+        {
+            p.Move();
+        }
     }
     private void ActivePlatform()
     {
@@ -38,6 +57,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0;
         Destroy(gameObject);
     }
+
     private void OnTriggerController(GameObject obj)
     {
         if (obj.CompareTag("FrontDoor"))
@@ -74,6 +94,7 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D coll)
     {
         OnTriggerController(coll.gameObject);
@@ -82,4 +103,5 @@ public class PlayerController : MonoBehaviour
     {
         OnColliderController(coll.gameObject);
     }
+
 }
