@@ -106,11 +106,13 @@ public class Player : MonoBehaviour
     }
     private void CutJump()
     {
-        // corte do  pulo
-        if (Input.GetButtonUp("Jump"))
         {
-            _rig.velocity = new Vector2(_rig.velocity.x, _rig.velocity.y * 0.5f);
-            _totalJump++;
+            // corte do  pulo
+            if (Input.GetButtonUp("Jump"))
+            {
+                _rig.velocity = new Vector2(_rig.velocity.x, _rig.velocity.y * 0.5f);
+                _totalJump++;
+            }
         }
     }
     private bool isGround()

@@ -4,19 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public GameObject gameOverPanel, initialUI;
+    public GameObject gameOverPanel, initialUI, exitMenu;
 
     private void Awake()
     {
-        Time.timeScale = 1;
         initialUI.SetActive(true);
         PlayerPrefs.SetString("Start", "");
         PlayerPrefs.Save();
-    }
-
-    void Update()
-    {
-        ActiveMenu();
     }
 
     public void StartScene()
@@ -27,6 +21,7 @@ public class MenuController : MonoBehaviour
     public void InitialFase()
     {
         initialUI.SetActive(false);
+        exitMenu.SetActive(true);
         PlayerPrefs.SetString("Start", "start");
         PlayerPrefs.Save();
     }
@@ -36,13 +31,10 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    private void ActiveMenu()
+    public void ActiveMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            initialUI.SetActive(true);
-            PlayerPrefs.SetString("Start", "");
-            PlayerPrefs.Save();
-        }
+        initialUI.SetActive(true);
+        PlayerPrefs.SetString("Start", "");
+        PlayerPrefs.Save();
     }
 }
