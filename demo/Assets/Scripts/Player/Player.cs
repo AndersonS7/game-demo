@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         // pulo comum
         if (isGround() && _totalJump < 1)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump")) 
             {
                 _rig.velocity = Vector2.up * _jumpForce;
                 _totalJump++;
