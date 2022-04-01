@@ -4,9 +4,9 @@ public class EnemiesController : MonoBehaviour
 {
     private float direction, timeMove;
     private GameObject targetObj;
-
+    public GameObject area;
     public LayerMask layerGround, layerWall;
-
+    
     Enemy frog;
 
     void Start()
@@ -19,8 +19,7 @@ public class EnemiesController : MonoBehaviour
     {
         frog.AnimatorController();
 
-        if (targetObj != null && 
-            Vector2.Distance(targetObj.transform.position, transform.position) < 4)
+        if (Vector2.Distance(targetObj.transform.position, area.transform.position) < 4)
         {
             timeMove += Time.deltaTime;
 

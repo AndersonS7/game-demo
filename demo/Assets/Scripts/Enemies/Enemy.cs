@@ -37,22 +37,19 @@ public class Enemy : MonoBehaviour
 
     public void Jump()
     {
-        if (!isWall())
+        if (isGround() && !_isJumping)
         {
-            if (isGround() && !_isJumping)
+            if (_totalJump <= 1)
             {
-                if (_totalJump <= 1)
-                {
-                    _rig.velocity = Vector2.up * _jumpForce;
-                    _totalJump++;
-                    _isJumping = true;
-                }
+                _rig.velocity = Vector2.up * _jumpForce;
+                _totalJump++;
+                _isJumping = true;
             }
-            if (isGround())
-            {
-                _isJumping = false;
-                _totalJump = 0;
-            }
+        }
+        if (isGround())
+        {
+            _isJumping = false;
+            _totalJump = 0;
         }
     }
     public void AnimatorController()
@@ -68,21 +65,23 @@ public class Enemy : MonoBehaviour
     }
     public void Move(float direction)
     {
-        if (!isWall())
+        if (direction > 0)
         {
-            if (direction > 0)
-            {
-                _obj.transform.localScale = new Vector2(-1, 1);
-            }
-            else if (direction < 0)
-            {
-                _obj.transform.localScale = new Vector2(1, 1);
-            }
-            _obj.transform.position += new Vector3(direction, 0, 0) * _speed * Time.deltaTime;
+            _obj.transform.localScale = new Vector2(-1, 1);
         }
-        
+        else if (direction < 0)
+        {
+            _obj.transform.localScale = new Vector2(1, 1);
+        }
+        _obj.transform.position += new Vector3(direction, 0, 0) * _speed * Time.deltaTime;
     }
+    public bool isWall()
+    {
+        RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
+            _coll2D.bounds.size, 0, Vector2.right, 1, _layerWall);
 
+        return ground.collider != null;
+    }
     private bool isGround()
     {
         RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
@@ -90,15 +89,6 @@ public class Enemy : MonoBehaviour
 
         return ground.collider != null;
     }
-
-    private bool isWall()
-    {
-        RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
-            _coll2D.bounds.size, 0, Vector2.right, 0.01f, _layerWall);
-
-        return ground.collider != null;
-    }
-
     private void InitialObj()
     {
         _isJumping = false;
