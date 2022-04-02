@@ -34,7 +34,13 @@ public class Enemy : MonoBehaviour
 
         InitialObj();
     }
-
+    public void IsDead()
+    {
+        _speed = 0;
+        _jumpForce = 0;
+        _animator.SetBool("TaMorto", true);
+        Destroy(_obj, 0.5f);
+    }
     public void Jump()
     {
         if (isGround() && !_isJumping)

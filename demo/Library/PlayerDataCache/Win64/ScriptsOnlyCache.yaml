@@ -31,8 +31,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -217,13 +219,13 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 9d5c86d009daf995aca4d6275e7467d7
+      Hash: 877cfcfa441f565e9264a1c2d2caa128
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemiesController
   - hash:
       serializedVersion: 2
-      Hash: 2117a9fa5a491669cacbb8886d0571d9
+      Hash: 2b33d05de82c705969ab2bed11ab1035
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController

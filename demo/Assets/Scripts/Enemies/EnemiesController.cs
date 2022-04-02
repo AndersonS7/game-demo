@@ -6,7 +6,7 @@ public class EnemiesController : MonoBehaviour
     private GameObject targetObj;
     public GameObject area;
     public LayerMask layerGround, layerWall;
-    
+
     Enemy frog;
 
     void Start()
@@ -18,22 +18,31 @@ public class EnemiesController : MonoBehaviour
     void Update()
     {
         frog.AnimatorController();
-
-        if (Vector2.Distance(targetObj.transform.position, area.transform.position) < 4)
+        if (targetObj != null)
         {
-            timeMove += Time.deltaTime;
-
-            if (timeMove > 0.5f)
+            if (Vector2.Distance(targetObj.transform.position, area.transform.position) < 4)
             {
-                direction = targetObj.transform.position.x - gameObject.transform.position.x;
-                frog.Move(direction);
-                frog.Jump();
+                timeMove += Time.deltaTime;
 
-                if (timeMove >= 1)
+                if (timeMove > 0.5f)
                 {
-                    timeMove = 0;
+                    direction = targetObj.transform.position.x - gameObject.transform.position.x;
+                    frog.Move(direction);
+                    frog.Jump();
+
+                    if (timeMove >= 1)
+                    {
+                        timeMove = 0;
+                    }
                 }
             }
+        }
+
+        // verifica se o inimigo foi atingido
+        if (PlayerController.colliderEnemy)
+        {
+            PlayerController.colliderEnemy = false;
+            frog.IsDead();
         }
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public LayerMask layerGround, layerWall;
-    public GameObject mask, mask2, platforms, gameOverPanel, endPanel;
+    public GameObject mask, mask2, platform1, platform2, gameOverPanel, endPanel;
     public Text gemTex;
 
-    public static bool isWall;
+    public static bool isWall, colliderEnemy;
 
     private int contGem;
 
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        colliderEnemy = false;
         p = new Player(gameObject, 5, 22.8f, layerGround, layerWall);
         isWall = false;
     }
@@ -24,7 +25,6 @@ public class PlayerController : MonoBehaviour
         if (PlayerPrefs.GetString("Start") == "start")
         {
             p.Jump();
-            ActivePlatform();
 
             // mostra para o background quando o player bateu na parede
             if (p.isWall())
@@ -42,13 +42,6 @@ public class PlayerController : MonoBehaviour
         if (PlayerPrefs.GetString("Start") == "start")
         {
             p.Move();
-        }
-    }
-    private void ActivePlatform()
-    {
-        if (contGem == 2)
-        {
-            platforms.SetActive(true);
         }
     }
     private void GameOver()
@@ -74,8 +67,17 @@ public class PlayerController : MonoBehaviour
         }
         else if (obj.CompareTag("Gem"))
         {
-            contGem++;
-            gemTex.text = contGem.ToString("00");
+            IncrementGem();
+        }
+        else if (obj.CompareTag("Gem1"))
+        {
+            IncrementGem();
+            platform1.SetActive(true);
+        }
+        else if (obj.CompareTag("Gem2"))
+        {
+            IncrementGem();
+            platform2.SetActive(true);
         }
         else if (obj.CompareTag("End"))
         {
@@ -89,12 +91,18 @@ public class PlayerController : MonoBehaviour
         {
             GameOver();
         }
-        else if (obj.CompareTag("Enemy"))
+        if (obj.CompareTag("Enemy"))
         {
-            GameOver();
+            if (obj.transform.position.y + 1 >= gameObject.transform.position.y)
+            {
+                GameOver();
+            }
+            else if(gameObject.transform.position.y + 1 > obj.transform.position.y)
+            {
+                colliderEnemy = true;
+            }
         }
     }
-
     private void OnTriggerEnter2D(Collider2D coll)
     {
         OnTriggerController(coll.gameObject);
@@ -104,4 +112,9 @@ public class PlayerController : MonoBehaviour
         OnColliderController(coll.gameObject);
     }
 
+    private void IncrementGem()
+    {
+        contGem++;
+        gemTex.text = contGem.ToString("00");
+    }
 }
