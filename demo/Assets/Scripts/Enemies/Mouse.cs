@@ -11,19 +11,13 @@ public class Mouse : MonoBehaviour
     void Start()
     {
         direction = -1;
-        mouse = new Enemy(gameObject, 0); //3.5f
+        mouse = new Enemy(gameObject, 3.5f);
         mouse.Move(direction);
     }
 
     void Update()
     {
         mouse.Move(direction);
-
-        if (PlayerController.colliderEnemy)
-        {
-            PlayerController.colliderEnemy = false;
-            mouse.IsDead();
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D coll)

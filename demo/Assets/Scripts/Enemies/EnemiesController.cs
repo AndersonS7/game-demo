@@ -37,12 +37,5 @@ public class EnemiesController : MonoBehaviour
                 }
             }
         }
-
-        // verifica se o inimigo foi atingido
-        if (PlayerController.colliderEnemy)
-        {
-            PlayerController.colliderEnemy = false;
-            frog.IsDead();
-        }
     }
 }

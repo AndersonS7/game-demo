@@ -72,16 +72,17 @@ public class Player : MonoBehaviour
         CheckFallingDown();
 
         // pulo comum
-        if (isGround() && _totalJump < 1)
+        if (isGround() && _totalJump < 1 || isGround(_layerWall) && _totalJump < 1)
         {
-            if (Input.GetButtonDown("Jump")) 
+            if (Input.GetButtonDown("Jump"))
             {
                 _rig.velocity = Vector2.up * _jumpForce;
                 _totalJump++;
                 _animator.SetBool("TaPulando", true);
             }
         }// pulo se estiver caindo
-        else if (!isGround() && _totalJump < 1 && _timeFallingDrown < 0.15f)
+        else if (!isGround() && _totalJump < 1 && _timeFallingDrown < 0.15f
+            || isGround(_layerWall) && _totalJump < 1 && _timeFallingDrown < 0.15f)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -95,10 +96,20 @@ public class Player : MonoBehaviour
         CutJump();
 
         // recupera o pulo
-        if (isGround() && _totalJump >= 1)
+        if (isGround() && _totalJump >= 1 || isGround(_layerWall) && _totalJump >= 1)
         {
             _totalJump = 0;
         }
+        if (_rig.velocity.y == 0)
+        {
+            _animator.SetBool("TaPulando", false);
+        }
+    }
+    public void Jump(float jumpForce)
+    {
+        _rig.velocity = Vector2.up * jumpForce;
+        _animator.SetBool("TaPulando", true);
+
         if (_rig.velocity.y == 0)
         {
             _animator.SetBool("TaPulando", false);
@@ -119,6 +130,13 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
             _coll2D.bounds.size, 0, Vector2.down, 0.1f, _layerGround);
+
+        return ground.collider != null;
+    }
+    private bool isGround(LayerMask layerIsWall)
+    {
+        RaycastHit2D ground = Physics2D.BoxCast(_coll2D.bounds.center,
+            _coll2D.bounds.size, 0, Vector2.down, 0.1f, layerIsWall);
 
         return ground.collider != null;
     }

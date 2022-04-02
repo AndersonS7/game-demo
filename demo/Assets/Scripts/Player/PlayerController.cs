@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0;
         Destroy(gameObject);
     }
-
     private void OnTriggerController(GameObject obj)
     {
         if (obj.CompareTag("FrontDoor"))
@@ -96,10 +95,10 @@ public class PlayerController : MonoBehaviour
             if (obj.transform.position.y + 1 >= gameObject.transform.position.y)
             {
                 GameOver();
-            }
-            else if(gameObject.transform.position.y + 1 > obj.transform.position.y)
+            }else if (obj.transform.position.y + 1 <= gameObject.transform.position.y)
             {
-                colliderEnemy = true;
+                p.Jump(15);
+                Destroy(obj.gameObject);
             }
         }
     }
